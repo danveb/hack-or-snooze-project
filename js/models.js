@@ -25,7 +25,8 @@ class Story {
 
   getHostName() {
     // UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+    // this.url.host
+    return new URL(this.url).host;
   }
 }
 
@@ -54,6 +55,7 @@ class StoryList {
     //  instance method?
 
     // query the /stories endpoint (no auth required)
+    // const response = await axios.get(`${BASE_URL}/stories`)
     const response = await axios({
       url: `${BASE_URL}/stories`,
       method: "GET",
@@ -73,8 +75,21 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
-    // UNIMPLEMENTED: complete this function!
+  // async addStory( /* user, newStory */) {
+  //   // UNIMPLEMENTED: complete this function!
+  // }
+  async addStory(user, { author, title, url }) {
+    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbnZlYiIsImlhdCI6MTYxNjM3ODc2M30.KpgzT9XuGrCe_QQV_l9kiBTS8-qcfdPVIoYkyO1kU-8'; 
+    const response = await axios({
+      url: `${BASE_URL}/stories`, 
+      method: 'POST', 
+      data: { token, story: { author, title, url }},
+    })
+
+    const story = new Story(response.data.story); 
+    this.stories.unshift(story); 
+    user.ownStories.unshift(story); 
+    return story; 
   }
 }
 
@@ -149,7 +164,11 @@ class User {
       method: "POST",
       data: { user: { username, password } },
     });
+    console.log(response.data.token); 
+    // TOKEN eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbnZlYiIsImlhdCI6MTYxNjM3ODc2M30.KpgzT9XuGrCe_QQV_l9kiBTS8-qcfdPVIoYkyO1kU-8
 
+
+    // destructuring user
     let { user } = response.data;
 
     return new User(
@@ -193,4 +212,22 @@ class User {
       return null;
     }
   }
-}
+
+
+  // /** Add a story to the list of user favorites and update the API
+  //  * - story: a Story instance to add to favorites
+  //  */
+
+  // /** Remove a story to the list of user favorites and update the API
+  //  * - story: the Story instance to remove from favorites
+  //  */
+
+  // /** Update API with favorite/not-favorite.
+  //  *   - newState: "add" or "remove"
+  //  *   - story: Story instance to make favorite / not favorite
+  //  * */
+
+  // /** Return true/false if given Story instance is a favorite of this user. */
+
+
+};

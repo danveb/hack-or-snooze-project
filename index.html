@@ -37,15 +37,48 @@
   <div class="navbar-brand">
     <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
   </div>
+  <!-- nav-left (hidden initially, to show after login) -->
+  <div class="main-nav-links hidden">
+    <!-- submit link -->
+    <a class="nav-link" href="#" id="nav-submit-story">submit</a>
+    <!-- favorites link -->
+    <a class="nav-link" href="#" id="nav-favorites">favorites</a>
+    <!-- my stories -->
+    <a class="nav-link" href="#" id="nav-my-stories">my stories</a>
+  </div>
   <div class="nav-right">
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
     <a class="nav-link" href="#" id="nav-user-profile"></a>
     <a class="hidden" id="nav-logout" href="#"><small>(logout)</small></a>
+    
   </div>
 </nav>
 
 <!-- area for stories (all stories, user stories, favorites) -->
 <section class="stories-container container">
+
+  <!-- form to add a new story (hidden initially) -->
+  <form action="" class="hidden" id="submit-form">
+    <!-- author -->
+    <div>
+      <label for="create-author">author</label>
+      <input type="text" id="create-author" placeholder="author name" required>
+    </div>
+    <!-- title -->
+    <div>
+      <label for="create-title">title</label>
+      <input type="text" id="create-title" placeholder="story title" required>
+    </div>
+    <!-- url -->
+    <div>
+      <label for="create-url">url</label>
+      <input type="text" id="create-url" placeholder="story url" required>
+    </div>
+    <!-- button -->
+    <button type="submit" class="btn">submit</button>
+    <hr>
+  </form>
+
 
   <!-- loading message (removed by JS after stories loaded) -->
   <div id="stories-loading-msg">Loading&hellip;</div>

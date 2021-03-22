@@ -50,3 +50,43 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+/** Submit new story form */
+async function submitNewStory(evt) {
+  console.debug("submitNewStory");
+  evt.preventDefault(); 
+
+  // form 
+  const author = $('#create-author').val(); 
+  const title = $('#create-title').val(); 
+  const url = $('#create-url').val(); 
+  const username = currentUser.username; 
+  const storyData = { title, url, author, username }; 
+
+  const story = await storyList.addStory(currentUser, storyData); 
+
+  const $story = generateStoryMarkup(story); 
+  $allStoriesList.prepend($story); 
+
+}
+$submitForm.on('submit', submitNewStory); 
+
+/** Handle deleting a story. */
+
+/** Handle submitting new story form. */
+
+
+
+/******************************************************************************
+ * Functionality for list of user's own stories
+ */
+
+/******************************************************************************
+ * Functionality for favorites list and starr/un-starr a story
+ */
+
+/** Put favorites list on page. */
+
+/** Handle favorite/un-favorite a story */
+
+
