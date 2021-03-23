@@ -6,6 +6,13 @@ const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
 const $allStoriesList = $("#all-stories-list");
+// my stories
+const $myStories = $('#my-stories'); 
+// my favoriteStories
+const $myFavoriteStories = $('#favorite-user-stories'); 
+
+const $storiesLists = $(".stories-list");
+
 
 const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
